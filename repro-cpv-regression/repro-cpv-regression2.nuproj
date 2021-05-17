@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.Build.NoTargets/3.0.4">
+  <Sdk Name="Microsoft.Build.CentralPackageVersions" Version="2.0.29" />
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <WarningsAsErrors>NU1604</WarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" />
+  </ItemGroup>
+</Project>
