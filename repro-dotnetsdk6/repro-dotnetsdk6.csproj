@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$([MSBuild]::GetPathOfFileAbove(ServiceFabricOnDotnetSdk.props))" />
+  <Import Project="dotnet.reproduciblebuilds.isolated-Sdk-Sdk.props" />
+  <Import Project="$(PkgMicrosoft_VisualStudio_Azure_Fabric_MSBuild)\build\Microsoft.VisualStudio.Azure.Fabric.Application.props" Condition="'$(PkgMicrosoft_VisualStudio_Azure_Fabric_MSBuild)' != ''" />
+
+  <PropertyGroup>
+    <ProjectVersion>2.0</ProjectVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Fabric.MSBuild" GeneratePathProperty="true" Version="1.7.3" />
+    <PackageReference Include="Bond.Core.CSharp" Version="9.0.3" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(BuildingInsideVisualStudio)' != ''">
+    <ApplicationProjectTargetsPath>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Service Fabric Tools\Microsoft.VisualStudio.Azure.Fabric.ApplicationProject.targets</ApplicationProjectTargetsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" />
+  <Import Condition="'$(ApplicationProjectTargetsPath)' != ''" Project="$(ApplicationProjectTargetsPath)" />
+  <Import Project="$(PkgMicrosoft_VisualStudio_Azure_Fabric_MSBuild)\build\Microsoft.VisualStudio.Azure.Fabric.Application.targets" Condition="'$(PkgMicrosoft_VisualStudio_Azure_Fabric_MSBuild)' != ''" />
+
+
+  <Target Name="Build">
+    <Message Text="Mock build target ran" />
+  </Target>  
+</Project>
