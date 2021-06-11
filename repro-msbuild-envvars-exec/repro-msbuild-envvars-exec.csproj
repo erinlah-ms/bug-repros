@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.Build.NoTargets">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>repro_msbuild_envvars_exec</RootNamespace>
+    <DOTNET_MULTILEVEL_LOOKUP></DOTNET_MULTILEVEL_LOOKUP>
+    <MyCommand>
+<![CDATA[ 
+echo "<#=1+1#>" | t4 -o -
+]]>
+    </MyCommand>
+  </PropertyGroup>
+
+  <Target Name="Custom" BeforeTargets="BeforeBuild">
+    <Exec Command="$(MyCommand)" EnvironmentVariables="DOTNET_MULTILEVEL_LOOKUP=$(DOTNET_MULTILEVEL_LOOKUP)" />
+  </Target>
+</Project>
