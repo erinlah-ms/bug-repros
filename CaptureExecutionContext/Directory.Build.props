@@ -1,0 +1,3 @@
+<Project>
+  <Sdk Name="DotNet.ReproducibleBuilds.Isolated" Version="0.1.66" />
+</Project>
